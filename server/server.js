@@ -17,6 +17,16 @@ io.on('connection', (socket) => {
 	socket.on('disconnect', () => {
 		console.log("Client disconnected");
 	})
+
+	socket.emit('newMessage', {
+		from: 'Elango',
+		text: 'Hello from server',
+		createdAt: '123456'
+	})
+
+	socket.on('createMessage', (recdObj) => {
+		console.log("Message received: ",JSON.stringify(recdObj));
+	})
 })
 
 server.listen(port, () => {
