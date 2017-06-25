@@ -18,12 +18,6 @@ io.on('connection', (socket) => {
 		console.log("Client disconnected");
 	})
 
-	// socket.emit('newMessage', {
-	// 	from: 'Elango',
-	// 	text: 'Hello from server',
-	// 	createdAt: '123456'
-	// })
-
 	socket.on('fromClient', (recdObj) => {
 		console.log("Message received: ",JSON.stringify(recdObj));
 		//socket.emit will emit to the only one client that is connected
@@ -32,16 +26,17 @@ io.on('connection', (socket) => {
 		from: recdObj.from,
 		text: recdObj.text,
 		recdAt: new Date().toUTCString()
+		})
 	})
-	})
+
 	socket.on('clientLoc', (recdObj) => {
 		console.log("Message received: ",JSON.stringify(recdObj));
 		//socket.emit will emit to the only one client that is connected
 		//where as io.emit will emit to all clients that are connected
 		io.emit('userLoc', {
-		lat: recdObj.lat,
-		lng: recdObj.lng
-	})
+			lat: recdObj.lat,
+			lng: recdObj.lng
+		})
 	})
 })
 

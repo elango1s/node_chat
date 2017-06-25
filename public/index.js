@@ -11,10 +11,6 @@ var cities = {
 		properties: {name: 'Chicago'}
 	}, {
 		type: 'Feature',
-		geometry: {type: 'Point', coordinates: [-149.900, 61.218]},
-		properties: {name: 'Anchorage'}
-	}, {
-		type: 'Feature',
 		geometry: {type: 'Point', coordinates: [-99.127, 19.427]},
 		properties: {name: 'Mexico City'}
 	}, {
@@ -27,10 +23,6 @@ var cities = {
 		properties: {name: 'Johannesburg'}
 	}, {
 		type: 'Feature',
-		geometry: {type: 'Point', coordinates: [15.322, -4.325]},
-		properties: {name: 'Kinshasa'}
-	}, {
-		type: 'Feature',
 		geometry: {type: 'Point', coordinates: [151.207, -33.867]},
 		properties: {name: 'Sydney'}
 	}]
@@ -38,10 +30,6 @@ var cities = {
 
 socket.on('connect', function() {
 	console.log("Connected to server");
-	// socket.emit('createMessage', {
-	// 	from: 'ElanGO',
-	// 	text: 'Hello from client'
-	// })
 })
 
 socket.on('disconnect', function() {
@@ -53,6 +41,7 @@ socket.on('toClient', function(obj) {
 	li.text(`${obj.recdAt} - ${obj.from}: ${obj.text}`);
 	$('#recd-messages').append(li);
 })
+
 socket.on('userLoc', function(obj) {
 	addMarker(obj.lat, obj.lng);
 })
@@ -74,6 +63,7 @@ function initMap() {
 
     map.data.addGeoJson(cities);
 };
+
 function addMarker(lat, lng) {
 	var loc = {lat: lat, lng: lng};
 	new google.maps.Marker({
@@ -82,6 +72,7 @@ function addMarker(lat, lng) {
 		title: 'Hello World!'
 	})
 };
+
 locButton.on('click', function() {
 	if(!navigator.geolocation) {
 		console.log("Location mapping not supported on this client");
