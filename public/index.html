@@ -2,11 +2,55 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<style>
+		#message-section {
+		    width: 500px;
+		    background: #6666ff;
+		    float: left;
+		}
+
+		#map {
+		    margin-left: 700px;
+		    height: 100%;
+		}
+		.button{
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			display: inline-block;
+			font-size: 16px;
+		}
+		input[type=text] {
+			width: 300px;
+			padding: 12px 20px;
+			margin: 8px 0;
+			box-sizing: border-box;
+		}
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+		</style>
 	</head>
 	<body>
 		<p>Welcome to the chat app</p>
 
+		<div id="message-section">
+			<form id="send-form">
+				<input name="message" type="text" size="50" height="25" placeholder="Type your message here" />
+				<button class="button" id="send-location">Send Message</button>
+			</form>
+			<ol id="recd-messages"></ol>
+		</div>
+		<div id="map">
+		</div>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfpE3OyaYaRfEXnG6qi7EJSSPi3YzZbh4&callback=initMap"></script>
 		<script src="/socket.io/socket.io.js"></script>
-		<script src="index.js"></script>
+		<script src="./jquery.js"></script>
+		<script src="./index.js"></script>
 	</body>
 </html>
